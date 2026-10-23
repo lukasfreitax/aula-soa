@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>Veículo Client</title>
+        <meta charset="UTF-8">
+        <script type="text/javascript">
+            let endpoint = 'http://localhost:9000/veiculo'
+            //Usa se o Async quando não se sabe se o tempo exato de resposta, depende da rede para resposta
+            async function cadastrar(){
+                let resposta = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type':'application/json'
+                    },
+                    body: JSON.stringify({
+                        'placa': document.getElementById('placa').value,
+                        'modelo': document.getElementById('modelo').value
+                    })
+                }).then(res => res.json())
+                alert(resposta['mensagem'])
+            // o termo Then irá realizar a ação após receber a resposta
+            }
+
+            window.onload = ()=> {
+                document.getElementById('frmCadastro').onsubmit = (evento)=> {
+                    evento.preventDefault()
+
+                    cadastrar()
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Cadastro de Veículos</h1>
+        <form action="#" method="POST" id="frmCadastro">
+            <label for="placa">Placa:</label>
+            <input type="text" id="placa" name="placa" maxlenght="8" required>
+            <label for="modelo">Modelo:</label>
+            <input type="text" id="modelo" name="modelo" maxlenght="50" required>
+            <button>Cadastrar</button>
+
+        </form>
+    </body>
+</html>
