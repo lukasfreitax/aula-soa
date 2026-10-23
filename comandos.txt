@@ -1,0 +1,12 @@
+#Executar pelo terminal Comand Prompt
+python -m pip install virtualenv
+
+#executar dentro do diretório do projeto
+python -m virtualenv venv
+
+#ativa o ambiente
+.\venv\Scripts\activate
+
+#ativa os módulos
+python -m pip install flask flask-cors
+python -m pip install sqlalchemy
